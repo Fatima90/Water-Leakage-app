@@ -1,50 +1,76 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View } from 'react-native';
+import { DrawerNavigator, StackNavigator } from 'react-navigation';
 
-import { createStackNavigator } from 'react-navigation';
+import Home from './screens/Home/Home';
 import Langage from './screens/Langauge/Langauge';
-import MenuDrawer from './screens/MenuDrawer/MenuDrawer';
 
-class MainScreen extends React.Component {
-  render(){
-    return (
-      <MenuDrawer />
-    )
+import Complaint from './screens/Complaint/Complaint';
+import AddComplain from './screens/Complaint/AddComplain';
+
+
+import Enquiry from './screens/Enquiry/Enquiry';
+import Bill from './screens/Enquiry/Bill';
+import Rations from './screens/Enquiry/Rations';
+
+import Application from './screens/Applications/Application';
+import AppEnquiry from './screens/Applications/AppEnquiry';
+import AddApplication from './screens/Applications/AddApplication';
+
+
+
+class Settings extends React.Component {
+  static navigationOptions = {
+    title: 'settings',
   }
-}
-
-class DetailsScreen extends React.Component {
   render(){
     return(
-      <View>
-        <Text>This is my details screen</Text>
-        <Button title='Go to Details' onPress= {() => this.props.navigation.navigate('Details')} />
-      </View>
+    <View>
+      <Text>This is settings page</Text>
+    </View>
     )
   }
 }
 
-//entry point (root component) for the app
-const RootStack = createStackNavigator (
-  {
-    Home: Langage,
-    Main : MainScreen,
-    Details : DetailsScreen
-  },{
-    initialRouteName : 'Home',
+class Contact extends React.Component {
+  static navigationOptions = {
+    title: 'Contact Us',
   }
-)
-
-export default class App extends React.Component {
   render(){
-    return <RootStack />
+    return(
+    <View>
+      <Text>This is Contact us page</Text>
+    </View>
+    )
   }
 }
+
+
+export const Stack = StackNavigator({
+  Main : {screen : Langage},
+  Home: { screen: Home },
+  Complaint : {screen : Complaint},
+  AddComplain : {screen : AddComplain},
+  Enquiry : {screen : Enquiry},
+  Bill : {screen : Bill},
+  Rations : {screen : Rations},
+  Application : {screen: Application},
+  AddApplication : AddApplication,
+  AppEnquiry : AppEnquiry,
+  Settings : {screen : Settings},
+  Contact : {screen : Contact}
+}, {
+  initialRouteName: 'Main',
+})
+
+//entry point (root component) for the app
+export const Drawer = DrawerNavigator({
+  Home: { screen: Stack },
+  Complaint : Complaint,
+  Enquiry : {screen : Enquiry},
+  Application : {screen: Application},
+  Settings : {screen : Settings},
+  Contact : {screen : Contact},
+})
+
+
