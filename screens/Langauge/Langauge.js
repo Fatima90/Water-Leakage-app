@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button } from 'react-native';
+import { View, Button } from 'react-native';
 
 
 class Langague extends React.Component {
@@ -7,10 +7,14 @@ class Langague extends React.Component {
         header: null
     }
 
+    handlePress = () => {
+        this.props.navigation.navigate('Home');
+    };
+
     render (){
         return(
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff' }}>
-                <Button title='English' onPress={() => this.props.navigation.navigate('Main')}/>
+                <Button title='English' onPress={this.handlePress}/>
                 <Button title='Arabic' onPress={() => this.props.navigation.navigate('Main')}/>
             </View>
         )
